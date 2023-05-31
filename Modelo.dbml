@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BDFerrelectricos" Class="ModeloDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.Clientes" Member="Clientes">
+    <Type Name="Clientes">
+      <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Usuarios" Member="Usuarios">
+    <Type Name="Usuarios">
+      <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Contraseña" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Cargo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Productos" Member="Productos">
+    <Type Name="Productos">
+      <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Descripccion" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ValorUnitario" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Existencia" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="IDProveedor" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Association Name="Proveedores_Productos" Member="Proveedores" ThisKey="IDProveedor" OtherKey="Nit" Type="Proveedores" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Proveedores" Member="Proveedores">
+    <Type Name="Proveedores">
+      <Column Name="Nit" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Empresa" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Proveedores_Productos" Member="Productos" ThisKey="Nit" OtherKey="IDProveedor" Type="Productos" />
+    </Type>
+  </Table>
+  <Function Name="dbo.actualizarClientes" Method="actualizarClientes">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Telefono" Parameter="telefono" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.buscarClientes" Method="buscarClientes">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <ElementType Name="buscarClientesResult">
+      <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.eliminarClientes" Method="eliminarClientes">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.insertarClientes" Method="insertarClientes">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Telefono" Parameter="telefono" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.actualizarUsuarios" Method="actualizarUsuarios">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Contraseña" Parameter="contraseña" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Cargo" Parameter="cargo" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.buscarUsuarios" Method="buscarUsuarios">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <ElementType Name="buscarUsuariosResult">
+      <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Contraseña" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Cargo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.eliminarUsuarios" Method="eliminarUsuarios">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.insertarUsuarios" Method="insertarUsuarios">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Contraseña" Parameter="contraseña" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Cargo" Parameter="cargo" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.actualizarProductos" Method="actualizarProductos">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Descripccion" Parameter="descripccion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ValorUnitario" Parameter="valorUnitario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Existencia" Parameter="existencia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IDProveedor" Parameter="iDProveedor" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.buscarProductos" Method="buscarProductos">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <ElementType Name="buscarProductosResult">
+      <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Descripccion" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ValorUnitario" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Existencia" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="IDProveedor" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.eliminarProductos" Method="eliminarProductos">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.insertarProductos" Method="insertarProductos">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Descripccion" Parameter="descripccion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ValorUnitario" Parameter="valorUnitario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Existencia" Parameter="existencia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IDProveedor" Parameter="iDProveedor" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.actualizarProveedores" Method="actualizarProveedores">
+    <Parameter Name="Nit" Parameter="nit" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Empresa" Parameter="empresa" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Telefono" Parameter="telefono" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.buscarProveedores" Method="buscarProveedores">
+    <Parameter Name="Nit" Parameter="nit" Type="System.Int32" DbType="Int" />
+    <ElementType Name="buscarProveedoresResult">
+      <Column Name="Nit" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Empresa" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.eliminarProveedores" Method="eliminarProveedores">
+    <Parameter Name="Nit" Parameter="nit" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.insertarProveedores" Method="insertarProveedores">
+    <Parameter Name="Nit" Parameter="nit" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Empresa" Parameter="empresa" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Telefono" Parameter="telefono" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
